@@ -1,0 +1,15 @@
+.host-claim {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 14px 0 20px;
+}
+
+.host-claim input {
+  min-width: 0;
+  flex: 1;
+  border: 1px solid #bfccd1;
+  border-radius: 5px;
+  padding: 12px 13px;
+  outline-color: #176b87;
+}

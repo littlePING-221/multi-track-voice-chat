@@ -1,0 +1,18 @@
+.env
+
+# Runtime data and recordings
+data/
+recordings/
+
+# Rust build output
+target/
+
+# Frontend dependencies and generated output
+web/node_modules/
+web/dist/
+web/tsconfig.tsbuildinfo
+
+# Deployment files containing local secrets
+deploy/livekit.yaml
+deploy/egress.yaml
+deploy/nginx/voice-chat.locations.conf

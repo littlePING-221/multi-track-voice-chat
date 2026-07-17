@@ -1,0 +1,31 @@
+services:
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+  livekit:
+    image: livekit/livekit-server:v1.11.0
+    command: --config /etc/livekit.yaml
+    volumes: ["./livekit.yaml:/etc/livekit.yaml:ro"]
+    ports: ["127.0.0.1:7880:7880", "7881:7881", "50000-50100:50000-50100/udp"]
+    depends_on: [redis]
+    restart: unless-stopped
+  egress:
+    image: livekit/egress:v1.11.0
+    environment:
+      EGRESS_CONFIG_FILE: /etc/egress.yaml
+    volumes: ["./egress.yaml:/etc/egress.yaml:ro"]
+    depends_on: [redis, livekit]
+    restart: unless-stopped
+  rust-server:
+    build:
+      context: ..
+      dockerfile: deploy/server.Dockerfile
+      args:
+        http_proxy: ${http_proxy:-}
+        https_proxy: ${https_proxy:-}
+        all_proxy: ${all_proxy:-}
+    env_file: [../.env]
+    volumes: ["../recordings:/data/recordings", "../data/sqlite:/data/sqlite"]
+    ports: ["127.0.0.1:3000:3000"]
+    depends_on: [livekit]
+    restart: unless-stopped

@@ -1,0 +1,7 @@
+.git
+.env
+data
+recordings
+target
+web/node_modules
+web/dist

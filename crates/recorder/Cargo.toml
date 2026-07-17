@@ -1,0 +1,15 @@
+[package]
+name = "voice-recorder"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+anyhow.workspace = true
+chrono.workspace = true
+hound.workspace = true
+fs2 = "0.4"
+tempfile = "3.19"
+serde.workspace = true
+serde_json.workspace = true
+uuid.workspace = true
+voice-domain = { path = "../domain" }

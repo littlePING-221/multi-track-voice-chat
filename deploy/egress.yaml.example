@@ -1,0 +1,7 @@
+api_key: replace-with-livekit-api-key
+api_secret: replace-with-livekit-api-secret
+ws_url: ws://livekit:7880
+redis:
+  address: redis:6379
+insecure: true
+health_port: 8081
